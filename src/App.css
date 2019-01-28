@@ -1,32 +1,170 @@
+body {
+    background-color: #1e272e;
+}
+
 .App {
-  text-align: center;
+    width: 80%;
+    margin: 0 auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+/* ============= STEPS CONFIG ================= */
+
+.ui.steps {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ui.steps .step {
+    display: flex;
+    color: #4b5054;
+    background: #1e272e;
+    border-radius: 0;
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-direction: column;
+    align-items: center;
+
 }
 
-.App-link {
-  color: #61dafb;
+.ui.steps .step .description {
+    text-align: center;
+    /* margin-top: 10px; */
+    border-radius: 50%;
+    height: 15px;
+    font-size: .8em;
+    width: 15px;
+    height: 15px;
+    background-color: #4b5054;
+    /* padding-bottom: 15px; */
+}
+/* ===========COMPPLETED =============*/
+.ui.steps .step.completed .description {
+    background-color: #59ba5b;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ui.steps .step.completed .description:before {
+    border-bottom: 2px solid #59ba5b;
+}
+
+.ui.steps .step.completed .description:after {
+    border-bottom: 2px solid #59ba5b;
+}
+
+.ui.steps .step.completed .title {
+    color: #59ba5b;
+}
+
+/* ============/COMPLETED ============= */
+
+/* ===========ACTIVE ================= */
+.ui.steps .step.active .description:before {
+    border-bottom: 2px solid #fff;
+}
+
+.ui.steps .step.active .description:after {
+    border-bottom: 2px solid #fff;
+}
+
+.ui.steps .step.active .description {
+    background-color: #fff;
+}
+
+.ui.steps .step.active .title {
+    color: #fff;
+}
+
+.ui.steps .step.active:after {
+    display: none;
+}
+
+.ui.steps .step.active {
+    background: #1e272e;
+}
+
+/* ============/ACTIVE ============== */
+
+/* ============GENERAL =============== */
+
+.ui.steps .step .description:first-child {
+    margin-left: 105px;
+    margin-top: 10px;
+}
+
+.ui.steps .step .description:before {
+    content: "";
+    display: block;
+    border-bottom: 2px solid #4b5054;
+    position: absolute;
+    width: 135px;
+    right: 140px;
+    top: 48px;
+}
+
+.ui.steps .step .description:after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid #4b5054;
+    position: absolute;
+    width: 128px;
+    right: 2px;
+    top: 48px;
+}
+
+.ui.steps .step .title {
+    padding-bottom: 3px;
+}
+
+.ui.steps .step:after {
+    display: none;
+}
+
+
+
+
+
+/* =============END STEPS CONFIG================== */
+#csv {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.select-file {
+    width: 150px;
+    cursor: pointer;
+    padding: 10px 30px;
+    margin-left: 35%;
+    font-size: 1.2em;
+    background-color: #39d2b4;
+    color: white;
+    font-weight: bold;
+}
+
+.file-path {
+    font-style: 1.1em;
+    font-weight: bold;
+    display: block;
+    margin-top: 20px;
+    margin-left: 20%;
+}
+
+.discover {
+    float: right;
+}
+
+.discovery-source {
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.discovery-options {
+    width: 40%;
+
+}
+
+.selected-options {
+
 }

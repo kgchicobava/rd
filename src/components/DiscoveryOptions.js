@@ -1,0 +1,51 @@
+import React, { Component } from "react";
+import Accordion from "./Accordion";
+import { Checkbox, Form } from "semantic-ui-react";
+import { connect } from 'react-redux';
+import { nextStep, previousStep } from "../actions/stepActions";
+
+class DiscoveryOptions extends Component {
+	onCheckboxToggle = () => {
+		if(document.querySelector("#snmp").checked) {
+			this.props.nextStep(3);
+		} else {
+			this.props.previousStep(2);
+		}
+	};
+
+	Content = () => (
+		<div >
+			<Form>
+				<Form.Field>
+					<Checkbox
+						label="SNMP"
+						name="snmp"
+						id="snmp"
+						onChange={this.onCheckboxToggle}
+					/>
+				</Form.Field>
+				<Form.Field>
+					<Checkbox label="Link" />
+				</Form.Field>
+				<Form.Field>
+					<Checkbox label="VLAN" />
+				</Form.Field>
+				<Form.Field>
+					<Checkbox label="PORTS" />
+				</Form.Field>
+			</Form>
+		</div>
+	);
+
+	render() {
+		return <div className="discovery-options">
+				{this.props.step.step < 2 ? "" : <Accordion name="Discovery options" content={this.Content()} />}
+			</div>;
+	}
+}
+
+const mapStateToProps = state => ({
+	step: state.step
+});
+
+export default connect(mapStateToProps, {nextStep, previousStep})(DiscoveryOptions);

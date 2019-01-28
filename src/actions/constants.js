@@ -1,0 +1,14 @@
+export const SOURCE_IP = "SOURCE_IP";
+export const SOURCE_IP_RANGE = "SOURCE_IP_RANGE";
+export const SOURCE_CSV = "SOURCE_CSV";
+export const NEXT_STEP = "NEXT_STEP";
+export const ERROR = "ERROR";
+export const CLEAN_ERRORS = "CLEAN_ERRORS";
+export const CHANGE_SOURCE = "CHANGE_SOURCE";
+export const IP_RANGE_CHANGE = "IP_RANGE_CHANGE";
+export const SOURCE_IP_SELECTED = "SOURCE_IP_SELECTED";
+export const SET_FILE = "SET_FILE";
+export const PREVIOUS_STEP = "PREVIOUS_STEP";
+export const SET_SNMP_VER = "SET_SNMP_VER";
+export const SET_SELECTED_OPTIONS  = "SET_SELECTED_OPTIONS";
+export const SET_READ_COMMUNITY = "SET_READ_COMMUNITY";
