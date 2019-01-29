@@ -1,3 +1,4 @@
+// Big component, if snmp selected v3, shows s bunch of form fields
 import React, { Component } from "react";
 import {
 	Input,
@@ -9,13 +10,12 @@ import {
 	Modal
 } from "semantic-ui-react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { setSNMPver, setOptions } from "../actions/selectedOptsActions";
-import { sendError } from "../actions/sourceActions";
+import { sendError, clearErrors } from "../actions/sourceActions";
 import validator from "validator";
 import omitEmpty from "omit-empty";
 import { nextStep } from "../actions/stepActions";
-
-
 
 class SNMPdetails extends Component {
 	constructor(props) {
@@ -34,14 +34,19 @@ class SNMPdetails extends Component {
 		this.onChangeDropdown = this.onChangeDropdown.bind(this);
 		this.confirm = this.confirm.bind(this);
 		this.config = this.config.bind(this);
+		this.closeModal = this.closeModal.bind(this);
 	}
-	closeModal = () => this.setState({ modal: false })
-	ModalBox = (config) => (
+
+	closeModal = () => this.setState({ modal: false });
+
+	ModalBox = config => (
 		<Modal onClose={this.closeModal} open={this.state.modal}>
 			<pre>{`${JSON.stringify(config, null, 2)}`}</pre>
-			<Button className="close-modal" onClick={this.closeModal}>Close</Button>
+			<Button className="close-modal" onClick={this.closeModal}>
+				Close
+			</Button>
 		</Modal>
-	  )
+	);
 
 	onInputChange = ev => {
 		this.setState({ [ev.target.name]: ev.target.value });
@@ -55,23 +60,31 @@ class SNMPdetails extends Component {
 		this.setState({ authenticationAlgorithm: value });
 	};
 
+	// Config that shows in modal window after button "discover"
+	// Basically two reducers with data combined
 	config = () => {
 		const { selectedOpts, source } = this.props;
-		let sourceData = omitEmpty(source)
+		let sourceData = omitEmpty(source);
 		return {
 			content: {
 				...sourceData,
-				snmpConfig : {
+				snmpConfig: {
 					version: selectedOpts.SNMPver,
 					snmpv1: selectedOpts.snmpv1,
 					snmpv2: selectedOpts.snmpv2,
 					snmpv3: selectedOpts.snmpv3
 				}
 			}
-	}}
+		};
+	};
 
+	// Confirm selected options
 	confirm = () => {
-		if (Object.values(this.state).some(elem => validator.isEmpty(elem.toString()))) {
+		if (
+			Object.values(this.state).some(elem =>
+				validator.isEmpty(elem.toString())
+			)
+		) {
 			this.props.sendError("Please, fill all fields", "options");
 			return;
 		} else {
@@ -87,7 +100,8 @@ class SNMPdetails extends Component {
 			};
 			this.props.setOptions(options);
 			this.props.nextStep(4);
-			this.setState({modal: true});
+			this.props.clearErrors();
+			this.setState({ modal: true });
 		}
 	};
 
@@ -102,7 +116,11 @@ class SNMPdetails extends Component {
 
 				<Form.Field>
 					<label>Read Community</label>
-					<Input name="readCommunity" placeholder="Please, write down read community" onChange={this.onInputChange} />
+					<Input
+						name="readCommunity"
+						placeholder="Please, write down read community"
+						onChange={this.onInputChange}
+					/>
 				</Form.Field>
 				<Form.Field>
 					<Dropdown
@@ -121,7 +139,11 @@ class SNMPdetails extends Component {
 				</Form.Field>
 				<Form.Field>
 					<label>Context name</label>
-					<Input name="contextName" placeholder="Please, write down context name" onChange={this.onInputChange} />
+					<Input
+						name="contextName"
+						placeholder="Please, write down context name"
+						onChange={this.onInputChange}
+					/>
 				</Form.Field>
 				<Form.Field>
 					<label>Context Engine ID</label>
@@ -192,17 +214,39 @@ class SNMPdetails extends Component {
 				</Form.Field>
 				<Form.Field>
 					<label>Authentication Password</label>
-					<Input name="password" placeholder="Please, write down authentication password" onChange={this.onInputChange} />
+					<Input
+						name="password"
+						placeholder="Please, write down authentication password"
+						onChange={this.onInputChange}
+					/>
 				</Form.Field>
-				{this.props.selectedOpts.SNMPver === "v3" ?
-
-				<Button className="discover-full-options" onClick={this.confirm} positive>Discover</Button> : ""}
+				{this.props.selectedOpts.SNMPver === "v3" ? (
+					<Button
+						className="discover-full-options"
+						onClick={this.confirm}
+						positive>
+						Discover
+					</Button>
+				) : (
+					""
+				)}
 
 				{this.ModalBox(this.config())}
 			</div>
 		);
 	}
 }
+
+SNMPdetails.propTypes = {
+	selectedOpts: PropTypes.object.isRequired,
+	error: PropTypes.object.isRequired,
+	source: PropTypes.object.isRequired,
+	setSNMPver: PropTypes.func.isRequired,
+	setOptions: PropTypes.func.isRequired,
+	sendError: PropTypes.func.isRequired,
+	nextStep: PropTypes.func.isRequired,
+	clearErrors: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
 	selectedOpts: state.selectedOpts,
@@ -212,5 +256,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ setSNMPver, setOptions, sendError, nextStep }
+	{ setSNMPver, setOptions, sendError, nextStep, clearErrors }
 )(SNMPdetails);

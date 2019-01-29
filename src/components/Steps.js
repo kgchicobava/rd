@@ -1,15 +1,18 @@
+// Shows current progress of steps, on top
 import React, { Component } from "react";
 import { Step } from "semantic-ui-react";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 class Steps extends Component {
-	checkStage = (position) => {
+	checkStage = position => {
 		if (position === this.props.step.step) {
 			return "active";
 		}
 		if (position < this.props.step.step) {
 			return "completed";
 		}
-	}
+	};
 	render() {
 		const { step } = this.props.step;
 		return (
@@ -25,7 +28,7 @@ class Steps extends Component {
 						<Step.Title>Discovery Options</Step.Title>
 						<Step.Description>2</Step.Description>
 					</Step>
-					<Step completed={3  < step} active={step === 3}>
+					<Step completed={3 < step} active={step === 3}>
 						<Step.Title>Discovery Input Data</Step.Title>
 						<Step.Description>3</Step.Description>
 					</Step>
@@ -39,8 +42,12 @@ class Steps extends Component {
 	}
 }
 
+Steps.propTypes = {
+	step: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
-	step: state.step,
+	step: state.step
 });
 
 export default connect(mapStateToProps)(Steps);

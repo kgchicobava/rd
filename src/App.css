@@ -11,6 +11,8 @@ label {
 	color: #fff;
 }
 
+
+
 /* ============= STEPS CONFIG ================= */
 
 .ui.steps {
@@ -41,6 +43,7 @@ label {
 	background-color: #4b5054;
 	/* padding-bottom: 15px; */
 }
+
 /* ===========COMPPLETED =============*/
 .ui.steps .step.completed .description {
 	background-color: #59ba5b;
@@ -152,21 +155,20 @@ label {
 }
 
 .ui.positive.button.discover-full-options {
-    float: right;
-    margin-top: 55px;
-    margin-bottom: 20px;
-    margin-right: -30px;
+	float: right;
+	margin-top: 55px;
+	margin-bottom: 20px;
+	margin-right: -30px;
 }
+
 .ui.positive.button.discover-basic-options {
-    float: right;
-    margin-top: 10px;
+	float: right;
+	margin-top: 10px;
 }
 
 .ui.button.clear {
-    margin-top: 10px;
+	margin-top: 10px;
 }
-
-
 
 .discovery-source {
 	margin-right: auto;
@@ -177,18 +179,15 @@ label {
 	width: 40%;
 }
 
-.selected-options {
-}
-
 .ui.styled.accordion .accordion {
 	border: 2px solid #2e353b;
 	background-color: #1e272e;
 }
 
 .ui.styled.accordion .accordion .title:not(.ui) {
-    color: #6290ad;
-    font-weight: bold;
-    font-size: 1.2em;
+	color: #6290ad;
+	font-weight: bold;
+	font-size: 1.2em;
 }
 
 .ui.styled.accordion {
@@ -200,53 +199,54 @@ label {
 	color: #61666a;
 }
 
-.ui.form .field > label {
-	color: #fff;
-}
 
-.ui.form input[type="text"] {
-	color: white;
-	border: 2px solid #2e353b;
-	background-color: #1e272e;
-}
 
-.ui.form input[type="text"]:focus {
-	font-weight: bold;
-	color: white;
-	border: 2px solid #2e353b;
-	background-color: #1e272e;
-}
 
 .ui.checkbox label {
 	color: #fff;
 }
+
 .ui.checkbox label:hover,
-.ui.checkbox + label:hover {
+.ui.checkbox+label:hover {
 	color: #fff;
 }
 
-.ui.checkbox input:focus ~ .box:after,
-.ui.checkbox input:focus ~ label:after {
+.ui.checkbox input:focus~.box:after,
+.ui.checkbox input:focus~label:after {
 	color: #fff;
 }
-.ui.checkbox input:focus ~ label {
+
+.ui.checkbox input:focus~label {
 	color: #fff;
 }
 
 .ui.form .field label {
-    margin-right: 80px;
-    font-weight: bold;
-  }
-
-  .blue {
-      color: #6290ad !important;
-  }
-
-.ui.button.close-modal {
-    float: right;
-    margin: 10px;
+	margin-right: 80px;
+	font-weight: bold;
 }
 
-.ui.button.clear {
+.blue {
+	color: #6290ad !important;
+}
 
+.ui.button.close-modal {
+	float: right;
+	margin: 10px;
+}
+
+.ui.form .field>label {
+	color: #fff;
+}
+
+.ui.form .field > input[type="text"] {
+	color: white;
+	border: 2px solid #2e353b;
+	background-color: #1e272e;
+}
+
+.ui.form .field> input[type="text"]:focus {
+	font-weight: bold;
+	color: white;
+	border: 2px solid #2e353b;
+	background-color: #1e272e;
 }

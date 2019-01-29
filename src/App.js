@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
 import store from "./store";
 import { Provider } from "react-redux";
 import Steps from "./components/Steps";
@@ -16,16 +15,14 @@ class App extends Component {
 				<div className="App">
 					<Steps />
 					<div className="flex">
-					<DiscoverySource  />
-					<DiscoveryOptions  />
+						<DiscoverySource />
+						<DiscoveryOptions />
 					</div>
 					<SelectedOptions />
-
 				</div>
 			</Provider>
 		);
 	}
 }
-
 
 export default App;

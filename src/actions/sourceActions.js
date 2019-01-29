@@ -1,13 +1,13 @@
+// actions for first component, where need to choose source
 import {
 	SOURCE_IP,
 	SOURCE_IP_RANGE,
-    SOURCE_CSV,
-    IP_RANGE_CHANGE,
+	SOURCE_CSV,
+	IP_RANGE_CHANGE,
 	ERROR,
 	CLEAN_ERRORS,
-    CHANGE_SOURCE,
-    SOURCE_IP_SELECTED,
-    SET_FILE
+	SOURCE_IP_SELECTED,
+	SET_FILE
 } from "../actions/constants";
 
 export const sourceIp = IP => dispatch => {
@@ -15,13 +15,17 @@ export const sourceIp = IP => dispatch => {
 	dispatch({ type: SOURCE_IP_SELECTED, IP });
 };
 
+export const clearErrors = () => dispatch => {
+	dispatch({type: CLEAN_ERRORS});
+}
+
 export const sendError = (error, place) => dispatch => {
 	dispatch({ type: ERROR, error, place });
 };
 
-export const setFile = (file) => dispatch => {
-    dispatch({type: SET_FILE, file});
-}
+export const setFile = file => dispatch => {
+	dispatch({ type: SET_FILE, file });
+};
 
 export const changeSource = value => dispatch => {
 	dispatch({ type: CLEAN_ERRORS });
@@ -31,16 +35,16 @@ export const changeSource = value => dispatch => {
 			break;
 		case "IPRange":
 			dispatch({ type: SOURCE_IP_RANGE });
-            break;
-        case "CSV":
-        dispatch({type: SOURCE_CSV});
-        break;
+			break;
+		case "CSV":
+			dispatch({ type: SOURCE_CSV });
+			break;
 		default:
 			return;
 	}
 };
 
 export const rangeIp = (firstIP, secondIP) => dispatch => {
-    dispatch({type: CLEAN_ERRORS})
-    dispatch({type: IP_RANGE_CHANGE, firstIP, secondIP});
-}
+	dispatch({ type: CLEAN_ERRORS });
+	dispatch({ type: IP_RANGE_CHANGE, firstIP, secondIP });
+};

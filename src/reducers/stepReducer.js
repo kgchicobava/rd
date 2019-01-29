@@ -11,15 +11,15 @@ export default (state = initialState, action) => {
 				...state,
 				step: action.step
 			};
-        case PREVIOUS_STEP:
-            return {
-                ...state,
-                step: action.step
-			}
+		case PREVIOUS_STEP:
+			return {
+				...state,
+				step: action.step
+			};
 		case CLEAR_ALL:
 			return {
 				...initialState
-			}
+			};
 		default:
 			return state;
 	}

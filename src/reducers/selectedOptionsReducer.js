@@ -1,3 +1,4 @@
+// Reducer for logic of third section
 import {
 	SET_SNMP_VER,
 	SET_SELECTED_OPTIONS,
@@ -7,7 +8,7 @@ import {
 
 const initialState = {
 	SNMPver: "",
-	snmpv1 : {
+	snmpv1: {
 		readCommunity: ""
 	},
 	snmpv2: {
@@ -40,41 +41,43 @@ export default (state = initialState, action) => {
 				...state,
 				snmpv1: null,
 				snmpv2: null,
-				snmpv3: {...state.snmpv3,
+				snmpv3: {
+					...state.snmpv3,
 					readCommunity: action.options.readCommunity,
 					securityOptions: action.options.securityOptions,
 					contextName: action.options.contextName,
 					contextEngineID: action.options.contextEngineID,
-					authenticationAlgorithm: action.options.authenticationAlgorithm
+					authenticationAlgorithm:
+						action.options.authenticationAlgorithm
 				}
 			};
 		case SET_READ_COMMUNITY:
-			switch(action.ver) {
+			switch (action.ver) {
 				case 1:
-				return {
-					...state,
-					snmpv1: {
-						readCommunity: action.text
-					},
-					snmpv2: null,
-					snmpv3: null,
-				}
+					return {
+						...state,
+						snmpv1: {
+							readCommunity: action.text
+						},
+						snmpv2: null,
+						snmpv3: null
+					};
 				case 2:
-				return {
-					...state,
-					snmpv2: {
-						readCommunity: action.text
-					},
-					snmpv1: null,
-					snmpv3: null,
-				}
+					return {
+						...state,
+						snmpv2: {
+							readCommunity: action.text
+						},
+						snmpv1: null,
+						snmpv3: null
+					};
 				default:
-				return state
+					return state;
 			}
 		case CLEAR_ALL:
-		return {
-			...initialState
-		}
+			return {
+				...initialState
+			};
 		default:
 			return state;
 	}

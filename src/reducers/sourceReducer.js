@@ -1,3 +1,4 @@
+// Reducer for logic, and "validation" of first, source component
 import {
 	SOURCE_IP,
 	SOURCE_IP_RANGE,
@@ -44,16 +45,16 @@ export default (state = initialState, action) => {
 				...state,
 				startIPAddress: action.firstIP,
 				endIPAddress: action.secondIP
-			}
-        case SET_FILE:
-            return {
-                ...state,
-                file: action.file
-			}
+			};
+		case SET_FILE:
+			return {
+				...state,
+				file: action.file
+			};
 		case CLEAR_ALL:
 			return {
 				...initialState
-			}
+			};
 		default:
 			return state;
 	}

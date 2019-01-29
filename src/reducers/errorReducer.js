@@ -1,3 +1,4 @@
+// Sets errors in error prop
 import { ERROR, CLEAN_ERRORS, CLEAR_ALL } from "../actions/constants";
 
 const initialState = {
@@ -21,7 +22,7 @@ export default (state = initialState, action) => {
 		case CLEAR_ALL: {
 			return {
 				...initialState
-			}
+			};
 		}
 		default:
 			return state;

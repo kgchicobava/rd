@@ -4,7 +4,6 @@ export const SOURCE_CSV = "SOURCE_CSV";
 export const NEXT_STEP = "NEXT_STEP";
 export const ERROR = "ERROR";
 export const CLEAN_ERRORS = "CLEAN_ERRORS";
-export const CHANGE_SOURCE = "CHANGE_SOURCE";
 export const IP_RANGE_CHANGE = "IP_RANGE_CHANGE";
 export const SOURCE_IP_SELECTED = "SOURCE_IP_SELECTED";
 export const SET_FILE = "SET_FILE";
