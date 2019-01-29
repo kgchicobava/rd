@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Segment, Dropdown, Input, Form, Message } from "semantic-ui-react";
+import { Dropdown, Input, Form, Message, Button } from "semantic-ui-react";
 import AccordionComponent from "./Accordion";
+import ClearButton from "./ClearButton";
 import validator from "validator";
 import { connect } from "react-redux";
 import { sourceIp, sendError, changeSource, rangeIp, setFile } from "../actions/sourceActions";
@@ -30,7 +31,10 @@ class DiscoverySource extends Component {
 
 
 	changeSource = (e, { value }) => {
-		this.setState({ sourceValue: value });
+		this.setState({ sourceValue: value, sourceIP: "",
+		file: "",
+		startIP: "",
+		endIP: "" });
 		this.props.changeSource(value);
 	};
 
@@ -93,7 +97,6 @@ class DiscoverySource extends Component {
 
 	SourceContent = () => (
 		<div >
-			<Segment>
 				<Form>
 					<Form.Field>
 						<Dropdown
@@ -172,7 +175,6 @@ class DiscoverySource extends Component {
 						""
 					)}
 				</Form>
-			</Segment>
 		</div>
 	);
 
@@ -183,6 +185,7 @@ class DiscoverySource extends Component {
 					name="Discovery Source"
 					content={this.SourceContent()}
 				/>
+			{this.props.step.step <= 2 ? <ClearButton /> : ""}
 			</div>
 		);
 	}
@@ -190,6 +193,7 @@ class DiscoverySource extends Component {
 
 const mapStateToProps = state => ({
 	source: state.source,
+	step: state.step,
 	error: state.error
 });
 

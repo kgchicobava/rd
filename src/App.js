@@ -20,11 +20,12 @@ class App extends Component {
 					<DiscoveryOptions  />
 					</div>
 					<SelectedOptions />
-					<Button>Clear</Button>
+
 				</div>
 			</Provider>
 		);
 	}
 }
+
 
 export default App;

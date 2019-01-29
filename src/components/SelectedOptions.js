@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { Form, Radio, Input, Button, Modal } from "semantic-ui-react";
 import Accordion from "./Accordion";
+import ClearButton from "./ClearButton";
 import SNMPdetails from "./SNMPdetails";
+import { sendError } from "../actions/sourceActions";
 import {
 	setSNMPver,
 	setOptions,
@@ -25,7 +26,7 @@ class SelectedOptions extends Component {
 	ModalBox = (config) => (
 		<Modal onClose={this.closeModal} open={this.state.modal}>
 			<pre>{`${JSON.stringify(config, null, 2)}`}</pre>
-			<Button onClick={this.closeModal}>Close</Button>
+			<Button className="close-modal" onClick={this.closeModal}>Close</Button>
 		</Modal>
 	  )
 
@@ -66,6 +67,7 @@ class SelectedOptions extends Component {
 				this.props.nextStep(4);
 			}
 			this.setState({modal: true});
+			this.props.nextStep(4);
 		}
 	};
 
@@ -106,6 +108,7 @@ class SelectedOptions extends Component {
 							<Input
 								value={this.state.readCommunity}
 								onChange={this.onReadCommunity}
+								placeholder="Please, write down read community"
 							/>
 						</Form.Field>
 					</div>
@@ -127,6 +130,7 @@ class SelectedOptions extends Component {
 				{this.props.step.step < 3 ? (
 					""
 				) : (
+					<div>
 					<Accordion
 						fluid={true}
 						name="Selected Options"
@@ -137,12 +141,17 @@ class SelectedOptions extends Component {
 							/>
 						}
 					/>
+					<ClearButton />
+					</div>
 				)}
 
-				{this.props.selectedOpts.SNMPver === "v1" || this.props.selectedOpts.SNMPver === "v2" ?<Button className="discover" onClick={this.confirm} positive>
+				{this.props.selectedOpts.SNMPver === "v1" || this.props.selectedOpts.SNMPver === "v2" ?
+
+				<Button className="discover-basic-options" onClick={this.confirm} positive>
 					Discover
 				</Button> : ""}
 				{this.ModalBox(this.config())}
+
 			</div>
 		);
 	}
@@ -156,5 +165,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ setSNMPver, setOptions, setReadCommunity, nextStep }
+	{ setSNMPver, setOptions, setReadCommunity, nextStep, sendError }
 )(SelectedOptions);

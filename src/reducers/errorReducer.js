@@ -1,4 +1,4 @@
-import { ERROR, CLEAN_ERRORS } from "../actions/constants";
+import { ERROR, CLEAN_ERRORS, CLEAR_ALL } from "../actions/constants";
 
 const initialState = {
 	source: "",
@@ -18,6 +18,11 @@ export default (state = initialState, action) => {
 				source: "",
 				options: ""
 			};
+		case CLEAR_ALL: {
+			return {
+				...initialState
+			}
+		}
 		default:
 			return state;
 	}

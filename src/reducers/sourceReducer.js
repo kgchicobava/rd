@@ -4,7 +4,8 @@ import {
 	SOURCE_CSV,
 	IP_RANGE_CHANGE,
 	SOURCE_IP_SELECTED,
-	SET_FILE
+	SET_FILE,
+	CLEAR_ALL
 } from "../actions/constants";
 
 const initialState = {
@@ -48,7 +49,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 file: action.file
-            }
+			}
+		case CLEAR_ALL:
+			return {
+				...initialState
+			}
 		default:
 			return state;
 	}

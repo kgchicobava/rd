@@ -39,7 +39,7 @@ class SNMPdetails extends Component {
 	ModalBox = (config) => (
 		<Modal onClose={this.closeModal} open={this.state.modal}>
 			<pre>{`${JSON.stringify(config, null, 2)}`}</pre>
-			<Button onClick={this.closeModal}>Close</Button>
+			<Button className="close-modal" onClick={this.closeModal}>Close</Button>
 		</Modal>
 	  )
 
@@ -102,7 +102,7 @@ class SNMPdetails extends Component {
 
 				<Form.Field>
 					<label>Read Community</label>
-					<Input name="readCommunity" onChange={this.onInputChange} />
+					<Input name="readCommunity" placeholder="Please, write down read community" onChange={this.onInputChange} />
 				</Form.Field>
 				<Form.Field>
 					<Dropdown
@@ -121,18 +121,19 @@ class SNMPdetails extends Component {
 				</Form.Field>
 				<Form.Field>
 					<label>Context name</label>
-					<Input name="contextName" onChange={this.onInputChange} />
+					<Input name="contextName" placeholder="Please, write down context name" onChange={this.onInputChange} />
 				</Form.Field>
 				<Form.Field>
 					<label>Context Engine ID</label>
 					<Input
 						name="contextEngineID"
+						placeholder="Please, write down context engine ID"
 						onChange={this.onInputChange}
 					/>
 				</Form.Field>
 
 				<Form.Field>
-					<label>Authentication Algorhithm</label>
+					<label className="blue">Authentication Algorhithm</label>
 					<Radio
 						label="MD5"
 						name="radioGroup"
@@ -191,9 +192,11 @@ class SNMPdetails extends Component {
 				</Form.Field>
 				<Form.Field>
 					<label>Authentication Password</label>
-					<Input name="password" onChange={this.onInputChange} />
+					<Input name="password" placeholder="Please, write down authentication password" onChange={this.onInputChange} />
 				</Form.Field>
-				{this.props.selectedOpts.SNMPver === "v3" ? <Button className="discover" onClick={this.confirm} positive>Discover</Button> : ""}
+				{this.props.selectedOpts.SNMPver === "v3" ?
+
+				<Button className="discover-full-options" onClick={this.confirm} positive>Discover</Button> : ""}
 
 				{this.ModalBox(this.config())}
 			</div>

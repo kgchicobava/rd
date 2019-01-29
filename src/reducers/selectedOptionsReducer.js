@@ -1,7 +1,8 @@
 import {
 	SET_SNMP_VER,
 	SET_SELECTED_OPTIONS,
-	SET_READ_COMMUNITY
+	SET_READ_COMMUNITY,
+	CLEAR_ALL
 } from "../actions/constants";
 
 const initialState = {
@@ -61,15 +62,19 @@ export default (state = initialState, action) => {
 				case 2:
 				return {
 					...state,
-					snmpv1: null,
 					snmpv2: {
 						readCommunity: action.text
 					},
+					snmpv1: null,
 					snmpv3: null,
 				}
 				default:
 				return state
 			}
+		case CLEAR_ALL:
+		return {
+			...initialState
+		}
 		default:
 			return state;
 	}
